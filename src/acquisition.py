@@ -1,4 +1,4 @@
 import pandas as pd
 
-def load_file(file):
+def open_file(file):
     return pd.read_csv(file)

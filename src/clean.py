@@ -9,6 +9,7 @@ def delete_columns(dataframe,lista):
 
 def delete_rows_excluding(dataframe,column,condition):
     dataframe=dataframe[dataframe[column] != condition]
+    dataframe.reset_index()
     return dataframe
 
 # delete_columns(data_clean,columnstodelete)

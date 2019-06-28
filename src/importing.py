@@ -7,7 +7,7 @@ def apiimportlanguage(dataframe,url):
     try:
         for i in range(len(countries)):
             countries[i]=countries[i].replace(' ','%20')
-        for i in countries[1:]:
+        for i in countries:
             res= requests.get(url+i)
             dev=res.json()
             languages.update({i.replace('%20',' '):dev[0]['languages'][0]['name']})
@@ -20,10 +20,16 @@ def apiimportregion(dataframe,url):
     try:
         for i in range(len(countries)):
             countries[i]=countries[i].replace(' ','%20')
-        for i in countries[1:]:
+        for i in countries:
             res= requests.get(url+i)
             dev=res.json()
             languages.update({i.replace('%20',' '):dev[0]['region']})
     except: print('Country not found!')
     return regions
+
+def generatelist(dataframe,column,dictionary):
+    lst=[]
+    for i in range(len(dataframe[column])):
+        lst.append(dictionary[dataframe[column][i]])
+    return lst
 
