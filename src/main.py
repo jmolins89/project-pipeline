@@ -1,9 +1,9 @@
 import pandas as pd
 import requests
-
 import acquisition
 import clean
 import importing
+import analysis
 
 def read_file(file):
     data = acquisition.open_file(file)
@@ -25,6 +25,10 @@ def impor(data,url):
     importing.add_columns(data,'Language',listlangu)
     importing.add_columns(data,'Region',listreg)
     return data
+
+def analyze(data):
+    df2 = analysis.genderSex(data_clean)
+
 
 
 

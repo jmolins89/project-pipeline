@@ -61,16 +61,3 @@ def add_columns(dataframe,column_name,lista):
 # add_columns(data_clean,'Language',listlangu)
 # add_columns(data_clean,'Region',listreg)
 # print(data_clean)
-
-
-# regions={}
-# countries = list(set(data_clean['country']))
-# print(countries)
-# for i in countries:
-#     res= requests.get(url+i)
-#     dev=res.json()
-#     try:
-#         regions.update({i:dev[0]['region']})
-#     except: print(i, 'country not found!')
-
-# print(data_clean)
