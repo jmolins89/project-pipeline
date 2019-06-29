@@ -2,6 +2,8 @@ import requests
 import acquisition
 import clean
 
+#API usada: https://restcountries.eu/#api-endpoints-name
+
 def apiimportlanguage(dataframe,url):
     print('Importing languages from the API...')
     languages={}

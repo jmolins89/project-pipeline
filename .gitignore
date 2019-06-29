@@ -1,5 +1,5 @@
 .DS_Store
 .env
-.ipynb_checkpoints/Untitled-checkpoint.ipynb
+.ipynb_checkpoints/
 __pycache__/importing.cpython-37.pyc
 *.pyc
