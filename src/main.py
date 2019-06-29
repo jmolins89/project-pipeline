@@ -1,9 +1,9 @@
 import pandas as pd
 import requests
 
-from acquisition import *
-from clean import *
-from importing import *
+import acquisition
+import clean
+import importing
 
 def read_file(file):
     data = acquisition.open_file(file)
@@ -11,12 +11,33 @@ def read_file(file):
 
 
 def cleaning(data):
-    data_clean = clean.delete_columns(data,['HDI for year','country-year'])
-    data_clean = clean.delete_rows_excluding(data_clean,'country','Saint Vincent and Grenadines')
-    return data_clean
+    data_ok=data.copy()
+    clean.delete_columns(data_ok,['HDI for year','country-year']) 
+    data_ok = clean.delete_rows_excluding(data_ok,'country','Saint Vincent and Grenadines')
+    data_ok = clean.resetindex(data_ok)
+    return data_ok
 
-def importing(data):
-    languages = importing.apiimportregion(dataframe,url)
+def impor(data,url):
+    languages = importing.apiimportlanguage(data,url)
+    regions = importing.apiimportregion(data,url)
+    listlangu=importing.generatelist(data,'country',languages)
+    listreg=importing.generatelist(data,'country',regions)
+    importing.add_columns(data,'Language',listlangu)
+    importing.add_columns(data,'Region',listreg)
+    return data
+
+
+
+def main():
+    data = read_file('../input/suicides.csv')
+    data_clean = cleaning(data)
+    data_imported = impor(data_clean,"https://restcountries.eu/rest/v2/name/")
+    print(data_imported)
+    #d_analyze, figure = analyze(d_clean)
+    #report(d_analyze, figure)
+
+if __name__ == "__main__":
+    main()
 
 
 
