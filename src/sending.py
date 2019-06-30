@@ -1,5 +1,5 @@
 import smtplib
-import getpass
+#import getpass
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
