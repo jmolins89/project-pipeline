@@ -1,9 +1,8 @@
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4, letter
 import os
-def generatePDF(font):
+def generatePDF(path, font):
     ancho, alto=A4        # ancho y alto de la pagina, en dinA4, es una tupla en puntos (un punto=1/72 pulgadas)
-    path="../presentacion/Suicides Report.pdf"
     c=canvas.Canvas(path, pagesize=A4)  # genera el archivo pdf vacio, con tamaño dinA4
     #c.setFillColorRGB(0, 0, 0)
     c.setStrokeColorRGB(0.7, 0.7, 0.7)

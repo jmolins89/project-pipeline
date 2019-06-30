@@ -44,8 +44,9 @@ def plotingGenerSex(df):
     autolabel(rects2, "right")
     fig.tight_layout()
     fig.set_size_inches(18.5, 10.5)
-    
-    return fig.savefig('../presentacion/SuicidesGenerationSex.png')
+    path='../presentacion/SuicidesGenerationSex.png'
+    fig.savefig(path)
+    return path
     #plt.show()
 
 # url="https://restcountries.eu/rest/v2/name/"
