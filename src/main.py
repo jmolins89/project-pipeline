@@ -4,6 +4,7 @@ import acquisition
 import clean
 import importing
 import analysis
+import presentation
 
 def read_file(file):
     data = acquisition.open_file(file)
@@ -27,16 +28,22 @@ def impor(data,url):
     return data
 
 def analyze(data):
-    df2 = analysis.genderSex(data_clean)
-    graph = analysis.plotingGenerSex(df2)
-    return df2, graph
+    df2 = analysis.genderSex(data)
+    plot = analysis.plotingGenerSex(df2)
+    return df2, plot
+
+def PDF(f):
+    url = presentation.generatePDF(f)
+    return url
+
 
 
 def main():
     data = read_file('../input/suicides.csv')
     data_clean = cleaning(data)
     data_imported = impor(data_clean,"https://restcountries.eu/rest/v2/name/")
-    d_analyze, graph = analyze(data_imported)
+    d_analyze, figure = analyze(data_imported)
+    PDF('Helvetica')
     #report(d_analyze, figure)
 
 if __name__ == "__main__":

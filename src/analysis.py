@@ -44,24 +44,25 @@ def plotingGenerSex(df):
     autolabel(rects2, "right")
     fig.tight_layout()
     fig.set_size_inches(18.5, 10.5)
-    fig.savefig('../presentacion/SuicidesGenerationSex.png')
-    plt.show()
+    
+    return fig.savefig('../presentacion/SuicidesGenerationSex.png')
+    #plt.show()
 
-url="https://restcountries.eu/rest/v2/name/"
-print('Reading file...')
-data = acquisition.open_file('../input/suicides.csv')
-data_clean=data.copy()
-clean.delete_columns(data_clean,['HDI for year','country-year']) 
-data_clean = clean.delete_rows_excluding(data_clean,'country','Saint Vincent and Grenadines')
-data_clean = clean.resetindex(data_clean)
-languages = importing.apiimportlanguage(data_clean,url)
-regions = importing.apiimportregion(data_clean,url)
-listlangu=importing.generatelist(data_clean,'country',languages)
-listreg=importing.generatelist(data_clean,'country',regions)
-importing.add_columns(data_clean,'Language',listlangu)
-importing.add_columns(data_clean,'Region',listreg)
-df2 = genderSex(data_clean)
-plotingGenerSex(df2)
+# url="https://restcountries.eu/rest/v2/name/"
+# print('Reading file...')
+# data = acquisition.open_file('../input/suicides.csv')
+# data_clean=data.copy()
+# clean.delete_columns(data_clean,['HDI for year','country-year']) 
+# data_clean = clean.delete_rows_excluding(data_clean,'country','Saint Vincent and Grenadines')
+# data_clean = clean.resetindex(data_clean)
+# languages = importing.apiimportlanguage(data_clean,url)
+# regions = importing.apiimportregion(data_clean,url)
+# listlangu=importing.generatelist(data_clean,'country',languages)
+# listreg=importing.generatelist(data_clean,'country',regions)
+# importing.add_columns(data_clean,'Language',listlangu)
+# importing.add_columns(data_clean,'Region',listreg)
+# df2 = genderSex(data_clean)
+# plotingGenerSex(df2)
 
 
 
