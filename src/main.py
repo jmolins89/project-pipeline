@@ -28,16 +28,15 @@ def impor(data,url):
 
 def analyze(data):
     df2 = analysis.genderSex(data_clean)
-
-
+    graph = analysis.plotingGenerSex(df2)
+    return df2, graph
 
 
 def main():
     data = read_file('../input/suicides.csv')
     data_clean = cleaning(data)
     data_imported = impor(data_clean,"https://restcountries.eu/rest/v2/name/")
-    print(data_imported)
-    #d_analyze, figure = analyze(d_clean)
+    d_analyze, graph = analyze(data_imported)
     #report(d_analyze, figure)
 
 if __name__ == "__main__":
