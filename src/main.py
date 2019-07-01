@@ -1,12 +1,4 @@
-import argparse
-import os
-import requests
-import acquisition
-import clean
-import importing
-import analysis
-import presentation
-import sending
+from analysis import *
 
 def read_file(file):
     data = acquisition.open_file(file)
@@ -36,10 +28,12 @@ def filtering(data,year):
 def analyze(data):
     df2 = analysis.genderSex(data)
     path = analysis.plotingGenerSex(df2)
-    return path
+    df3 = analysis.continentSex(data)
+    path2 = analysis.plotingContinentSex(df3)
+    return path, path2
 
-def pdf(p,f):
-    url = presentation.generatePDF(p,f)
+def pdf(p,p2,f):
+    url = presentation.generatePDF(p,p2,f)
     return url
 
 def emailing(a):
@@ -51,14 +45,14 @@ def main(file,year):
     data_clean = cleaning(data)
     data_imported = impor(data_clean,"https://restcountries.eu/rest/v2/name/")
     data_filtered= filtering(data_imported, year)
-    path = analyze(data_filtered)
-    file_to_send = pdf(path, 'Helvetica')
+    path, path2 = analyze(data_filtered)
+    file_to_send = pdf(path,path2, 'Helvetica')
     emailing(file_to_send)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Generate a suicides report')
     parser.add_argument('-f', dest='filePath', default= None, help='.csv file to analyze.')
-    parser.add_argument('-y', dest='year', default= 2000, type=int, help='Year to analyze since.')
+    parser.add_argument('-y', dest='year', default= None, type=int, help='Year to analyze since.')
     args = parser.parse_args()
 
     if isinstance(args.filePath, str) and isinstance(args.year, int):

@@ -1,7 +1,7 @@
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4, letter
 import os
-def generatePDF(path, font):
+def generatePDF(path,path2, font):
     ancho, alto=A4        # ancho y alto de la pagina, en dinA4, es una tupla en puntos (un punto=1/72 pulgadas)
     c=canvas.Canvas(path, pagesize=A4)  # genera el archivo pdf vacio, con tamaño dinA4
     #c.setFillColorRGB(0, 0, 0)
@@ -20,7 +20,8 @@ def generatePDF(path, font):
     c.setLineWidth(3)
     c.setStrokeGray(0)
     c.line(x, y, ancho, y)
-    c.drawImage("../presentacion/SuicidesGenerationSex.png", 0, alto - 450, width=550, height=300)
+    c.drawImage(path, 0, alto - 450, width=550, height=300)
+    c.drawImage(path2, 0, alto - 800, width=550, height=300)
     c.showPage()             # fin o cambio de pagina (se pierden los estilos)
     c.setStrokeColorRGB(0.7, 0.7, 0.7)
     c.setFont("{}-Bold".format(font), 24)

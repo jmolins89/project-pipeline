@@ -6,6 +6,12 @@ import acquisition
 import clean
 import importing
 
+import argparse
+import os
+import requests
+import analysis
+import presentation
+import sending
 
 def filteryear(dataframe,year):
     return dataframe[dataframe['year']>year]
@@ -13,7 +19,9 @@ def filteryear(dataframe,year):
 def genderSex(dataframe):
     x = dataframe.groupby(['sex','generation']).agg(['sum','mean','std']).unstack(level=0).reset_index()
     return x
-
+def continentSex(dataframe):
+    y = dataframe.groupby(['sex','Region']).agg(['sum','mean','std']).unstack(level=0).reset_index()
+    return y
 def plotingGenerSex(df):
     men_means, men_std = tuple(df['suicides/100k pop']['mean']['male']), tuple(df['suicides/100k pop']['std']['male'])
     women_means, women_std = tuple(df['suicides/100k pop']['mean']['female']), tuple(df['suicides/100k pop']['std']['female'])
@@ -47,7 +55,50 @@ def plotingGenerSex(df):
     path='../presentacion/SuicidesGenerationSex.png'
     fig.savefig(path)
     return path
-    #plt.show()
+
+def plotingContinentSex(df):
+    men_means, men_std = tuple(df['suicides/100k pop']['mean']['male']), tuple(df['suicides/100k pop']['std']['male'])
+    women_means, women_std = tuple(df['suicides/100k pop']['mean']['female']), tuple(df['suicides/100k pop']['std']['female'])
+
+    ind = np.arange(len(men_means))  # the x locations for the groups
+    width = 0.35  # the width of the bars
+
+    fig, ax = plt.subplots()
+    rects1 = ax.bar(ind - width/2, men_means,  width, yerr=men_std, label='Men') # remove std 
+    rects2 = ax.bar(ind + width/2, women_means,  width, yerr=women_std, label='Women') # remove std 
+
+    # Add some text for labels, title and custom x-axis tick labels, etc.
+    ax.set_ylabel('Suicides/100k pop')
+    ax.set_title('Suicides/100k pop. by continent and gender')
+    ax.set_xticks(ind)
+    ax.set_xticklabels((tuple(set(df['Region']))))
+    ax.legend()
+
+
+    def autolabel(rects, xpos='center'):
+
+        ha = {'center': 'center', 'right': 'left', 'left': 'right'}
+        offset = {'center': 0, 'right': 1, 'left': -1}
+
+        for rect in rects:
+            height = rect.get_height()
+            ax.annotate('{0:.2f}'.format(height),
+                        xy=(rect.get_x() + rect.get_width() / 2, height),
+                        xytext=(offset[xpos]*3, 3),  # use 3 points offset
+                        textcoords="offset points",  # in both directions
+                        ha=ha[xpos], va='bottom')
+
+    autolabel(rects1, "left")
+    autolabel(rects2, "right")
+
+    fig.tight_layout()
+    fig.set_size_inches(18.5, 10.5)
+    path = '../presentacion/Suicides-per-contintent.png'
+    fig.savefig(path)
+    return path
+
+
+
 
 # url="https://restcountries.eu/rest/v2/name/"
 # print('Reading file...')

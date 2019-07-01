@@ -6,6 +6,7 @@ import clean
 
 def apiimportlanguage(dataframe,url):
     print('Importing languages from the API...')
+    print('This will take a while...')
     languages={}
     countries = list(set(dataframe['country']))
     try:
@@ -20,6 +21,7 @@ def apiimportlanguage(dataframe,url):
 
 def apiimportregion(dataframe,url):
     print('Importing regions from the API...')
+    print('This will take a while...')
     regions={}
     countries = list(set(dataframe['country']))
     try:
@@ -33,7 +35,6 @@ def apiimportregion(dataframe,url):
     return regions
 
 def generatelist(dataframe,column,dictionary):
-    print('Creating list...')
     lst=[]
     for i in range(len(dataframe[column])):
         lst.append(dictionary[dataframe[column][i]])

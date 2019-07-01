@@ -26,7 +26,6 @@ def delete_rows_excluding(dataframe,column,condition):
 
 
 def resetindex(dataframe):
-    print('Reseting index...')
     dataframe = dataframe.reset_index(drop=True)
     return dataframe
 
