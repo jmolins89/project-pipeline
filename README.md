@@ -2,7 +2,7 @@
 
 In this project I will work with a suicides dataset from Kaagle. 
 
-I've generated the following files:
+I've generated the following files:<br>
 ***-acquisition.py***<br>
 ***-clean.py***<br>
 ***-importing.py***<br>
