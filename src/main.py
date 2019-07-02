@@ -9,7 +9,7 @@ from analysis import analyze
 from presentation import pdf
 from sending import emailing
 
-def main(year,inform):
+def main(year, inform):
     df = open_file('../input/suicides.csv')
     data_clean = cleaning(df)
     data_imported = impor(data_clean,"https://restcountries.eu/rest/v2/name/")

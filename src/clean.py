@@ -1,10 +1,4 @@
 import pandas as pd
-import acquisition
-
-# data=pd.read_csv('../input/suicides.csv')
-# data_clean=data.copy()
-# columnstodelete=['HDI for year','country-year']
-
 
 def delete_columns(dataframe,lista):
     try:
@@ -31,11 +25,9 @@ def changing_names(dataframe):
                 else: continue
         return dataframe
 
-
 def resetindex(dataframe):
     dataframe = dataframe.reset_index(drop=True)
     return dataframe
-
 
 def cleaning(data):
     data_ok=data.copy()
@@ -44,25 +36,3 @@ def cleaning(data):
     data_ok_ok= changing_names(data_ok)
     data_ok_ok = resetindex(data_ok_ok)
     return data_ok_ok
-
-
-# delete_columns(data_clean,columnstodelete)
-
-# data_clean.to_csv('../output/Data_clean.csv', index=False)
-
-# print('Reading file...')
-# data = acquisition.open_file('../input/suicides.csv')
-# data_clean=data.copy()
-
-# print('Deleting columns...')
-# delete_columns(data_clean,['HDI for year','country-year']) 
-
-# print('Deleting rows...')
-# data_clean = delete_rows_excluding(data_clean,'country','Saint Vincent and Grenadines')
-# resetindex(data_clean)
-# print(data_clean)
-
-
-# rows = data_clean.loc[data_clean['country']=='Saint Vincent and Grenadines']
-# rowsind = list(rows.index)
-# delete_rows(data_clean,rowsind)

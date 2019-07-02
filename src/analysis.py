@@ -2,14 +2,6 @@ import pandas as pd
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-import acquisition
-import clean
-import importing
-
-import requests
-import analysis
-import presentation
-import sending
 
 def filteryear(dataframe,year):
     return dataframe[dataframe['year']>year]

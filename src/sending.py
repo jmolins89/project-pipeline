@@ -1,5 +1,4 @@
 import smtplib
-#import getpass
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
@@ -31,7 +30,7 @@ def send(archive, period):
         print("Invalid email...")
         to = input("Try again:  ")
     print('Sending email to {}'.format(to))
-    html = "Hello, here you have the inform generated from the data analysis of suicides. Enjoy it!"
+    html = "Hello, here you have the inform generated from the data analysis of suicides between {} and 2014. Enjoy it!".format(period)
     msg = MIMEMultipart('mixed')
     msg['Subject'] = "Pipelines Project Inform {}-2014".format(period)
     msg['From'] = from_mail
