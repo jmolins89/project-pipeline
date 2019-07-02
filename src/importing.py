@@ -43,6 +43,14 @@ def generatelist(dataframe,column,dictionary):
 def add_columns(dataframe,column_name,lista):
     dataframe[column_name]=lista
 
+def impor(data,url):
+    languages = apiimportlanguage(data,url)
+    regions = apiimportregion(data,url)
+    listlangu= generatelist(data,'country',languages)
+    listreg= generatelist(data,'country',regions)
+    add_columns(data,'Language',listlangu)
+    add_columns(data,'Region',listreg)
+    return data
 
 # url="https://restcountries.eu/rest/v2/name/"
 # print('Reading file...')
