@@ -19,5 +19,5 @@ To generate a PDF I've used the library **reportlab**.
 Additionally, **an email is sent** ***attaching the generated PDF*** to a user entered in the console. Here I've used the library **mime**.
 
 Finally, we had to use the **argpars method** to enter the variables from the console. I've defined two arguments to enter from the console:<br>
-<space><space>*<space>**-y** to identify the year from which you want to filter the dataset.
-<space><space>*<space>**-i** to identify the type of inform you want to send by email.
+<p> **-y** to identify the year from which you want to filter the dataset.<br>
+<p> **-i** to identify the type of inform you want to send by email.
