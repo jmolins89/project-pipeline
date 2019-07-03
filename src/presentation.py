@@ -3,6 +3,7 @@ from reportlab.lib.pagesizes import A4, letter
 import os
 
 def extendpdf (path,path2,path3,path4, font, yea):
+    """ fgag gffgad"""
     ancho, alto=A4        # ancho y alto de la pagina, en dinA4, es una tupla en puntos (un punto=1/72 pulgadas)
     archivo='../presentacion/Pipeline Project {}-2014.pdf'.format(yea)
     c=canvas.Canvas('../presentacion/Pipeline Project {}-2014.pdf'.format(yea), pagesize=A4)  # genera el archivo pdf vacio, con tamaño dinA4
